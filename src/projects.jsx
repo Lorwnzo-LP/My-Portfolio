@@ -1,9 +1,10 @@
 
-import imagemBase from "/src/assets/imagemBase.png";
+import imagemTPT from "/src/assets/TPT.png";
 import imagemFokus from "/src/assets/Fokus.png"
 
 export const projects = [
   {
+    id: 1,
     name: "Fokus",
     image: imagemFokus,
     descriptionText:
@@ -13,21 +14,13 @@ export const projects = [
     link: "https://lorwnzo-lp.github.io/Projeto-Fokus-Alura/",
   },
   {
-    name: "Second Project",
-    image: imagemBase,
+    id: 2,
+    name: "The Personal Trainer",
+    image: imagemTPT,
     descriptionText:
-      "Descricao do projeto aqui em baixo para descrever o que o projeto faz e quais linguágens foram utilizadas",
-    programming: ["javaScript", "TypeScript", "React.js", "MongoDB"],
+      'Landing page for an app that helps personal trainers to manager their clients.' ,
+    programming: ["React.js", "HTML", "CSS"],
     finished: true,
-    link: "http://localhost:5173",
-  },
-  {
-    name: "Third Project",
-    image: imagemBase,
-    descriptionText:
-      "Descricao do projeto aqui em baixo para descrever o que o projeto faz e quais linguágens foram utilizadas",
-    programming: ["javaScript", "TypeScript", "React.js", "MongoDB"],
-    finished: true,
-    link: "http://localhost:5173",
-  },
+    link: "https://www.personaltpt.com.br",
+  }
 ];

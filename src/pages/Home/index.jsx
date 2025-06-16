@@ -11,27 +11,10 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import myPhoto from "/src/assets/minha_foto_square.png";
 import ProjectCard from "../../components/ProjectCard";
 import { projects } from "../../projects";
-import { useState } from "react";
+
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
-  const [chosen, setChosen] = useState();
-
-  const handleChose = (project) => {
-    setChosen({
-      name: project.name,
-      image: project.image,
-      languages: project.programming,
-      descriptionText: project.descriptionText,
-      favorite: project.favorite,
-      link: project.link,
-      finished: project.finished,
-    });
-
-    console.log(chosen);
-  };
-
-
 
   return (
     <>
@@ -39,7 +22,7 @@ export default function HomePage() {
         <div className="flex lg:flex-row flex-col gap-10 w-8/10 place-self-center justify-between">
           <div className=" place-self-center gap-10 flex">
             <img
-              className="rounded-4xl w-70 top-1 border-4 border-purple-900"
+              className="rounded-4xl w-80 h-90 top-1 border-4 border-purple-900"
               src={myPhoto}
               alt="Minha foto"
             />
@@ -49,6 +32,7 @@ export default function HomePage() {
                 Lorenzo Abreu Martins Ribeiro
               </h1>
               <h3 className="text-xl">Full-stack programmer</h3>
+              <h3 className="text-xl">LorenzoContato1@outlook.com</h3>
               <h3 className="text-xl">Born in Brazil</h3>
               <div className="flex gap-5">
                 <Menu as="div" className="relative inline-block text-left">
@@ -142,15 +126,14 @@ export default function HomePage() {
               return (
                 <li key={project.name}>
                   <Link
-                    onClick={() => {
-                      handleChose(project);
-                    }}
-                    to="/projects"
+                    to={`/projects/${project.id}`}
+                    onClick={()=> {console.log(project.id)}}
                   >
                     <ProjectCard
                       name={project.name}
                       image={project.image}
                       text={project.descriptionText}
+                      programming={project.programming}
                     />
                   </Link>
                 </li>

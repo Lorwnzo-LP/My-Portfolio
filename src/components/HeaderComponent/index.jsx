@@ -12,7 +12,7 @@ export default function HeaderComponent() {
 
         <ul className="flex gap-10">
           <li>
-            <LinkComponent to="/">Home</LinkComponent>
+            <LinkComponent to="/home">Home</LinkComponent>
           </li>
           <li>
             <LinkComponent to="/projects">Projects</LinkComponent>

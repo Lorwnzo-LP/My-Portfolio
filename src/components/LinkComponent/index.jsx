@@ -4,11 +4,12 @@ export default function LinkComponent({to, children}) {
   return (
     <Link
       className={`
-        text-lg
+        lg:text-lg
+        text-sm
         font-bold
         text-white
         ${
-        location.pathname === to ? "underline underline-offset-1" : ""
+        location.pathname.includes(to) ? "underline underline-offset-1" : ""
       }`}
       to={to}
     >

@@ -40,7 +40,7 @@ export default function AboutMePage() {
               As a sinal, I dived into this universe of programming, saying to myself that this is going to be my future. Being honest, I don't know what I'm going to do if it doesn't work, but untill there, I'll be going forward.
             </p>
           </div>
-          <div className="bg-gray-800 flex flex-col rounded-lg mt-10 w-100 gap-5 p-5">
+          <div className="bg-gray-800 flex flex-col rounded-lg mt-10 w-100 gap-5 p-5 text-white">
             <img className="rounded-full" src={myPhoto} alt="minha foto" />
             <h1 className="text-xl">Personal Information:</h1>
             <h2 className="">Lorenzo de Abreu Martins Ribeiro</h2>
