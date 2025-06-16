@@ -7,10 +7,13 @@ import { TfiClose } from "react-icons/tfi";
 import ProjectCard from "../../components/ProjectCard";
 import { projects } from "../../projects";
 import { Link, useParams } from "react-router-dom";
+import { useGlobal } from "../../GlobalContext";
 
 export default function ProjectPage() {
   const params = useParams();
   const projectId = params.id;
+  const { globalLanguage, setGlobalLanguage } = useGlobal();
+
   const [project, setProject] = useState();
 
   const [projectsState, setProjectsState] = useState(
@@ -18,7 +21,7 @@ export default function ProjectPage() {
       id: chosen.id,
       name: chosen.name,
       image: chosen.image,
-      descriptionText: chosen.descriptionText,
+      descriptionText: chosen.descriptionEn,
       link: chosen.link,
       programming: chosen.programming,
       finished: chosen.finished,
@@ -46,7 +49,6 @@ export default function ProjectPage() {
       }
     }
   }, [projectId, projectsState]);
-
 
   const handleUpdate = () => {
     setProject((prevState) => ({
@@ -81,7 +83,11 @@ export default function ProjectPage() {
                 <h2 className="text-3xl border-b-2 border-purple-400">
                   {project.name}
                 </h2>
-                <h3 className="text-md xl:text-xl">Programming usage:</h3>
+                <h3 className="text-md xl:text-xl">
+                  {globalLanguage == "English"
+                    ? "Programming usage:"
+                    : "Programação usada:"}
+                </h3>
                 <ol className="list-disc grid grid-flow-col grid-cols-3 grid-rows-3 text-md xl:text-lg">
                   {project
                     ? project.programming.map((programming) => {
@@ -89,7 +95,9 @@ export default function ProjectPage() {
                       })
                     : ""}
                 </ol>
-                <h3 className="text-md xl:text-xl">Description:</h3>
+                <h3 className="text-md xl:text-xl">
+                  {globalLanguage == "English" ? "Description:" : "Descrição:"}
+                </h3>
                 <p className="text-ellipsis ">{project.descriptionText}</p>
               </div>
               <div className="flex justify-between">
@@ -110,7 +118,9 @@ export default function ProjectPage() {
                   className="bg-gray-900 border-2 border-purple-600 w-fit px-5 py-2 rounded-lg place-self-end"
                   href={project.link}
                 >
-                  Visit website
+                  {globalLanguage == "English"
+                    ? "Visit website"
+                    : "Visitar website"}
                 </a>
               </div>
             </div>
@@ -118,24 +128,31 @@ export default function ProjectPage() {
         </section>
       ) : (
         <div className="text-center m-10">
-          <h1 className="text-3xl ">Chose one project to see more details</h1>
+          <h1 className="text-3xl ">
+            {globalLanguage == "English"
+              ? "Chose one project to see more details"
+              : "Escolha um projeto para ver mais detalhes"}
+          </h1>
         </div>
       )}
       <section className="h-full w-8/10 place-self-center mt-15 flex">
         <div className="w-3/4">
-          <h1 className="text-2xl text-center">Finished projects</h1>
+          <h1 className="text-2xl text-center">
+            {globalLanguage == "English"
+              ? "Finished projects"
+              : "Projetos finalizados"}
+          </h1>
           <div className="grid grid-cols-1 lg:grid-cols-3 ">
             {projectsState.map((project) => {
               return (
-                <div
-                  key={project.id}
-                >
+                <div key={project.id}>
                   <Link to={`/projects/${project.id}`}>
                     <ProjectCard
-                      key={project.name}
+                      language={globalLanguage}
                       name={project.name}
                       image={project.image}
-                      text={project.descriptionText}
+                      textEn={project.descriptionEn}
+                      textPt={project.descriptionPt}
                       programming={project.programming}
                     />
                   </Link>
@@ -145,7 +162,7 @@ export default function ProjectPage() {
           </div>
         </div>
         <div>
-          <h1 className="text-2xl">Projects in progress</h1>
+          <h1 className="text-2xl">{globalLanguage=='English'? 'Projects in progress' : 'Projetos em progresso'}</h1>
         </div>
       </section>
     </div>

@@ -1,4 +1,11 @@
-export default function ProjectCard({name, image, text, programming}) {
+export default function ProjectCard({
+  language,
+  name,
+  image,
+  textEn,
+  textPt,
+  programming,
+}) {
   return (
     <div className="flex flex-col py-5 gap-5 w-9/10 rounded-lg px-5 h-100 transition delay-100 duration-200 easy-in-out hover:-translate-1  hover:scale-110 ">
       <img
@@ -6,16 +13,16 @@ export default function ProjectCard({name, image, text, programming}) {
         src={image}
         alt="imagem base"
       />
-      <h2 className="text-2xl font-bold italic">
-        {name}  
-      </h2>
-      <p>
-        {text}
-      </p>
+      <h2 className="text-2xl font-bold italic">{name}</h2>
+      <p>{language == "English" ? textEn : textPt}</p>
       <ol>
-        {programming? programming.map((program) =>{
-          return <li key={program}>{program}</li>
-        }) : <li>Nada aqui</li>}
+        {programming ? (
+          programming.map((program) => {
+            return <li key={program}>{program}</li>;
+          })
+        ) : (
+          <li>Nada aqui</li>
+        )}
       </ol>
     </div>
   );

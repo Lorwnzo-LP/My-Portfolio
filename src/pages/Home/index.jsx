@@ -11,10 +11,11 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import myPhoto from "/src/assets/minha_foto_square.png";
 import ProjectCard from "../../components/ProjectCard";
 import { projects } from "../../projects";
-
 import { Link } from "react-router-dom";
+import { useGlobal } from "../../GlobalContext";
 
 export default function HomePage() {
+  const { globalLanguage, setGlobalLanguage } = useGlobal();
 
   return (
     <>
@@ -31,9 +32,17 @@ export default function HomePage() {
               <h1 className="text-2xl font-bold">
                 Lorenzo Abreu Martins Ribeiro
               </h1>
-              <h3 className="text-xl">Full-stack programmer</h3>
+              <h3 className="text-xl">
+                {globalLanguage == "English"
+                  ? "Full-stack programmer"
+                  : "Programador Full-stack"}
+              </h3>
               <h3 className="text-xl">LorenzoContato1@outlook.com</h3>
-              <h3 className="text-xl">Born in Brazil</h3>
+              <h3 className="text-xl">
+                {globalLanguage == "English"
+                  ? "Born in Brazil"
+                  : "Nascido no Brasil"}
+              </h3>
               <div className="flex gap-5">
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
@@ -91,7 +100,11 @@ export default function HomePage() {
             </div>
           </div>
           <div className="bg-gray-700 p-5 flex flex-col gap-5 rounded-lg min-w-1/10 text-white">
-            <h1 className="text-2xl font-bold">My programming knowledge:</h1>
+            <h1 className="text-2xl font-bold">
+              {globalLanguage == "English"
+                ? "My programming knowledge:"
+                : "Meu conhecimento em programação:"}
+            </h1>
             <div className="flex justify-around">
               <div>
                 <h2 className="text-xl font-bold">Front-end:</h2>
@@ -119,7 +132,9 @@ export default function HomePage() {
 
         <div className="h-full w-8/10 place-self-center">
           <h1 className="text-4xl w-full border-b-2 border-purple-700">
-            Published projects
+            {globalLanguage == "English"
+              ? "Published projects"
+              : "Projetos publicados"}
           </h1>
           <ol className="grid-cols-3 grid ">
             {projects.map((project) => {
@@ -127,12 +142,16 @@ export default function HomePage() {
                 <li key={project.name}>
                   <Link
                     to={`/projects/${project.id}`}
-                    onClick={()=> {console.log(project.id)}}
+                    onClick={() => {
+                      console.log(project.id);
+                    }}
                   >
                     <ProjectCard
+                      language={globalLanguage}
                       name={project.name}
                       image={project.image}
-                      text={project.descriptionText}
+                      textEn={project.descriptionEn}
+                      textPt={project.descriptionPt}
                       programming={project.programming}
                     />
                   </Link>
@@ -142,7 +161,6 @@ export default function HomePage() {
           </ol>
         </div>
       </section>
-
     </>
   );
 }
