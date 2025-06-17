@@ -1,37 +1,40 @@
 import { Description } from "@headlessui/react";
-import mongoose from "mongoose";
+import { Schema, connect, model } from "mongoose";
+
+const projectSchema = new Schema({
+  name: String,
+  image: String,
+  descriptionEn: String,
+  descriptionPt: String,
+  programming: [String],
+  finished: Boolean,
+  link: String,
+});
+
+const Project = model("project", projectSchema);
+
+connectToDatabase().catch((err) => console.log(err));
 
 async function connectToDatabase() {
-  try {
-    await mongoose.connect(
-      "mongodb+srv://Lorenzo:Piquinin.1@cluster0.aic8y5q.mongodb.net/"
-    );
-    console.log("connected")
-  } catch {
-    console.log("not connected");
-  }
+  await connect(
+    "mongodb+srv://Lorenzo:Piquinin.1@cluster0.aic8y5q.mongodb.net/"
+  );
+  console.log("connected");
 
-  const projectSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String,
-  });
+  /*const TPT = new Project({
+    name: "The Personal Trainer",
+    image: "/src/assets/TPT.png",
+    descriptionEn:
+      'Landing page for an app that helps personal trainers to manager their clients.',
+    descriptionPt:
+      'Pagina inicial para um app que ajuda personais trainers a gerenciar seus clientes.',
+    programming: ["React.js", "HTML", "CSS"],
+    finished: true,
+    link: "https://www.personaltpt.com.br",
+  });*/
 
-  projectSchema.methods.present = function present() {
-    const greeting = this.name
-      ? "The of the project is " + this.name
-      : "Project without name";
-    console.log(greeting);
-  };
 
-  const project = mongoose.model("Project", projectSchema);
+  const queryProject = await Project.find();
 
-  const fokus = new project({ name: "Fokus" });
-  console.log(fokus.name);
-
-  fokus.present();
-  const projects = await project.find();
-  console.log(projects);
+  console.log(queryProject);
 }
-
-connectToDatabase();
