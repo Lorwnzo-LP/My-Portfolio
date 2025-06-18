@@ -1,22 +1,14 @@
-import HeaderComponent from "../../components/HeaderComponent";
 import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
-import {
-  Description,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import myPhoto from "/src/assets/minha_foto_square.png";
 import ProjectCard from "../../components/ProjectCard";
 import { projects } from "../../projects";
 import { Link } from "react-router-dom";
 import { useGlobal } from "../../GlobalContext";
 
+
 export default function HomePage() {
   const { globalLanguage, setGlobalLanguage } = useGlobal();
-
+  const {globalProjects, setGlobalProjects} = useGlobal();
   return (
     <>
       <section className="flex flex-col gap-10 mt-10">
@@ -38,61 +30,44 @@ export default function HomePage() {
                   : "Programador Full-stack"}
               </h3>
               <h3 className="text-xl">LorenzoContato1@outlook.com</h3>
-              <h3 className="text-xl">
-                {globalLanguage == "English"
-                  ? "Born in Brazil"
-                  : "Nascido no Brasil"}
-              </h3>
-              <div className="flex gap-5">
-                <Menu as="div" className="relative inline-block text-left">
-                  <div>
-                    <MenuButton className="inline-flex h-15 justify-center items-center gap-x-1.5 rounded-md bg-gray-900 px-5 py-2 text-2xl font-sans  text-white shadow-xs ring-1 ring-gray-300  hover:bg-gray-600">
-                      Follow me!
-                      <ChevronDownIcon
-                        aria-hidden="true"
-                        className="-mr-1 size-5 text-gray-400"
-                      />
-                    </MenuButton>
+              <div className=" z-10 mt-2 w-60 origin-top-right rounded-md ">
+                <h3 className="text-xl inline-flex h-15 w-60 justify-center items-center gap-x-1.5 rounded-md bg-gray-900 font-sans text-white shadow-xs ring-1 ring-gray-300">
+                  {globalLanguage == "English" ? "Follow me!" : "Me siga"}
+                </h3>
+                <div className="z-10 mt-2 w-60 origin-top-right rounded-md bg-gray-800 shadow-lg ring-1 ring-black/5 ">
+                  <div className="py-1">
+                    <a
+                      target="_blank"
+                      href="https://www.instagram.com/llox.ss/"
+                      className="flex gap-x-1.5 items-center px-4 py-2 text-lg text-white hover:bg-gray-100 hover:text-gray-900 hover:outline-hidden"
+                    >
+                      <FaInstagram />
+                      @LLox.s
+                    </a>
                   </div>
-
-                  <MenuItems
-                    transition
-                    className="absolute z-10 mt-2 w-60 origin-top-right rounded-md bg-gray-800 shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
-                  >
-                    <div className="py-1">
-                      <MenuItem>
-                        <a
-                          target="_blank"
-                          href="https://www.instagram.com/llox.ss/"
-                          className="flex gap-x-1.5 items-center px-4 py-2 text-lg text-white data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
-                        >
-                          <FaInstagram />
-                          @LLox.ss
-                        </a>
-                      </MenuItem>
-                      <MenuItem>
-                        <a
-                          target="_blank"
-                          href="https://github.com/Lorwnzo-LP"
-                          className="flex gap-x-1.5 items-center px-4 py-2 text-lg text-white data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
-                        >
-                          <FaGithub />
-                          Lorwnzo-LP
-                        </a>
-                      </MenuItem>
-                      <MenuItem>
-                        <a
-                          target="_blank"
-                          href="https://www.linkedin.com/in/lorenzo-ribeiro-11b5b6275/"
-                          className="flex gap-x-1.5 items-center px-4 py-2 text-lg text-white data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
-                        >
-                          <FaLinkedin />
-                          Lorenzo-Ribeiro
-                        </a>
-                      </MenuItem>
-                    </div>
-                  </MenuItems>
-                </Menu>
+                  <div className="py-1">
+                    <a
+                      target="_blank"
+                      href="https://github.com/Lorwnzo-LP"
+                      className="flex gap-x-1.5 items-center px-4 py-2 text-lg text-white hover:bg-gray-100 hover:text-gray-900 hover:outline-hidden"
+                    >
+                      <FaGithub />
+                      Lorwnzo-LP
+                    </a>
+                  </div>
+                  <div className="py-1">
+                    <a
+                      target="_blank"
+                      href="https://www.linkedin.com/in/lorenzo-ribeiro-11b5b6275/"
+                      className="flex gap-x-1.5 items-center px-4 py-2 text-lg text-white hover:bg-gray-100 hover:text-gray-900 hover:outline-hidden"
+                    >
+                      <FaLinkedin />
+                      Lorenzo-Ribeiro
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="flex gap-5">
                 <button className="px-5 h-15 bg-white text-gray-800 border-2 border-gray-800 rounded-lg text-2xl flex place-content-center gap-5 items-center">
                   Get in touch
                 </button>
@@ -136,8 +111,8 @@ export default function HomePage() {
               ? "Published projects"
               : "Projetos publicados"}
           </h1>
-          <ol className="grid-cols-3 grid ">
-            {projects.map((project) => {
+          <ol className="grid-cols-3 grid w-9/10 place-self-center">
+            {globalProjects.map((project) => {
               return (
                 <li key={project.name}>
                   <Link
