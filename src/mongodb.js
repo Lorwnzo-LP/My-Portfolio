@@ -1,5 +1,14 @@
 import { Description } from "@headlessui/react";
 import { Schema, connect, model } from "mongoose";
+import express from "express";
+import MongoStore from "connect-mongo";
+import { createRequire } from "module";
+import { Route } from "react-router-dom";
+
+const require = createRequire(import.meta.url);
+
+const session = require("express-session");
+const app = express();
 
 const projectSchema = new Schema({
   name: String,
@@ -10,7 +19,6 @@ const projectSchema = new Schema({
   finished: Boolean,
   link: String,
 });
-
 const Project = model("project", projectSchema);
 
 async function connectToDatabase() {
@@ -20,25 +28,25 @@ async function connectToDatabase() {
     );
     console.log("connected");
 
-    /*const TPT = new Project({
-    name: "The Personal Trainer",
-    image: "/src/assets/TPT.png",
-    descriptionEn:
-    'Landing page for an app that helps personal trainers to manager their clients.',
-    descriptionPt:
-    'Pagina inicial para um app que ajuda personais trainers a gerenciar seus clientes.',
-    programming: ["React.js", "HTML", "CSS"],
-    finished: true,
-    link: "https://www.personaltpt.com.br",
-    });*/
-
     const queryProject = await Project.find();
 
-    console.log(queryProject);
-    return queryProject;
+    app.use(
+      session({
+        secret: "foo",
+        store: MongoStore.create({
+          mongoUrl:
+            "mongodb+srv://Lorenzo:Piquinin.1@cluster0.aic8y5q.mongodb.net/",
+          resave: false,
+          saveUnitialized: false,
+        }),
+      })
+    );
+
+    app.use(Route)
+    
   } catch (error) {
     console.log(error);
   }
 }
 
-export default connectToDatabase;
+connectToDatabase();
