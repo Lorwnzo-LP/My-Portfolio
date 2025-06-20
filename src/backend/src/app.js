@@ -1,52 +1,37 @@
 import express from "express";
+import connectToDB from "./config/dbConnect.js";
+import livro from "./models/Livro.js";
+
+const conexao = await connectToDB();
+
+conexao.on("error", (error) => {
+  console.log("erro ao conectar a database", error);
+});
+
+conexao.once("open", () => {
+  console.log("Conexão ao banco de base bem sucedida");
+});
 
 const app = express();
 app.use(express.json());
-
-const livros = [
-  {
-    id: 1,
-    titulo: "salada",
-  },
-  {
-    id: 2,
-    titulo: "laranja mecânica",
-  },
-];
-
-function buscarIndex(id) {
-  return livros.findIndex((livro) => {
-    return livro.id === Number(id);
-  });
-}
 
 app.get("/", (req, res) => {
   res.status(200).send("Vá para a rota /livros");
 });
 
-app.get("/livros", (req, res) => {
-  res.status(200).json(livros);
+app.get("/livros", async (req, res) => {
+  const listaLivros = await livro.find({})
+  res.status(200).json(listaLivros);
 });
 
 app.post("/livros", (req, res) => {
-  livros.push(req.body), res.status(200).send("Livro adicionado com sucesso");
-});
-
-app.get("/livros/:id", (req, res) => {
-  const index = buscarIndex(req.params.id);
-  res.status(200).json(livros[index]);
-});
-
-app.put("/livros/:id", (req, res) => {
-  const index = buscarIndex(req.params.id);
-  livros[index].titulo = req.body.titulo;
-  res.status(201).send("livro alterado com sucesso");
-});
-
-app.delete("/livros/:id", (req, res) => {
-  const index = buscarIndex(req.params.id);
-  livros.splice(index, 1);
-  res.status(200).send("Livro deletado com sucesso");
-});
+  const livroNovo = new livro({
+    titulo: req.body.titulo
+  })
+  livroNovo.save();
+  res.send("livro criado com sucesso")
+})
 
 export default app;
+
+//mongodb+srv://Lorenzo:<db_password>@cluster0.aic8y5q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
