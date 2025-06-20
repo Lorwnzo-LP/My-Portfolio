@@ -1,10 +1,10 @@
+import "dotenv/config";
 import { Description } from "@headlessui/react";
 import { Schema, connect, model } from "mongoose";
 import express from "express";
 import MongoStore from "connect-mongo";
 import { createRequire } from "module";
 import { Route } from "react-router-dom";
-
 const require = createRequire(import.meta.url);
 
 const session = require("express-session");
@@ -27,8 +27,6 @@ async function connectToDatabase() {
       "mongodb+srv://Lorenzo:Piquinin.1@cluster0.aic8y5q.mongodb.net/"
     );
     console.log("connected");
-
-    const queryProject = await Project.find();
 
     app.use(
       session({
