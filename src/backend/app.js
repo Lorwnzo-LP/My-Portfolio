@@ -1,6 +1,6 @@
 import express from "express";
 import connectToDB from "./src/config/dbConnect.js";
-import livro from "./src/models/Livro.js";
+import cors from "cors";
 import routes from "./src/routes/index.js";
 const conexao = await connectToDB();
 
@@ -13,6 +13,21 @@ conexao.once("open", () => {
 });
 
 const app = express();
+
+const whiteList = ["http://localhost:5173"]
+
+const corsOptions = {
+  origin: function (origin, cb) {
+    if(whiteList.indexOf(origin) !== -1 || !origin){
+      cb(null, true)
+    } else{
+      cb(null, true);
+    }
+  }
+};
+
+app.use(cors(corsOptions));
+
 routes(app);
 
 export default app;

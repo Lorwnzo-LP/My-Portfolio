@@ -1,12 +1,27 @@
-const API = "http://localhost:3000/Livros";
+const API = "http://localhost:3000/projects";
 
-async function buscarDados() {
+class ProjectApi {
+  static async fetchFullData() {
     try {
-        const data = await fetch(API);
-        const dataResponse = await data.json();
-        console.log(dataResponse);
+      const data = await fetch(API);
+      const dataResponse = await data.json();
+      console.log(dataResponse);
+      return dataResponse;
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
+  }
+
+  static async fetchByIdAndUpdate(id) {
+    try {
+      const data = await fetch(`${API}/${id}`);
+      const dataResponse = await data.json();
+      console.log(dataResponse);
+      return dataResponse;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
-buscarDados();
+
+export default ProjectApi;

@@ -104,7 +104,7 @@ export default function ProjectPage() {
                 <div
                   style={{ cursor: "pointer" }}
                   className="pointer-events-auto"
-                  onClick={() => {
+                   onClick={() => {
                     handleUpdate();
                   }}
                 >
@@ -153,7 +153,7 @@ export default function ProjectPage() {
                       image={project.image}
                       textEn={project.descriptionEn}
                       textPt={project.descriptionPt}
-                      programming={project.programming}
+                      programming={project.programmingLanguages}
                     />
                   </Link>
                 </div>

@@ -8,9 +8,9 @@ const projetoSchema = mongoose.Schema(
     imageURL: { type: mongoose.Schema.Types.String },
     descriptionEn: { type: String },
     descriptionPt: { type: String },
-    programmingLanguages: { type: [String] },
-    finished: true,
-    link: "https://lorwnzo-lp.github.io/Projeto-Fokus-Alura/",
+    programmingLanguages: { type: Array },
+    finished: {type: Boolean},
+    link: {type: String},
   },
   { versionKey: false }
 );

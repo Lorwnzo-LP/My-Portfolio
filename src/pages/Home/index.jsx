@@ -1,14 +1,16 @@
 import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 import myPhoto from "/src/assets/minha_foto_square.png";
 import ProjectCard from "../../components/ProjectCard";
-import { projects } from "../../projects";
 import { Link } from "react-router-dom";
 import { useGlobal } from "../../GlobalContext";
+import ProjectApi from "../../backend/API";
+
+const projects = await ProjectApi.fetchFullData();
 
 
 export default function HomePage() {
   const { globalLanguage, setGlobalLanguage } = useGlobal();
-  const {globalProjects, setGlobalProjects} = useGlobal();
+
   return (
     <>
       <section className="flex flex-col gap-10 mt-10">
@@ -112,7 +114,7 @@ export default function HomePage() {
               : "Projetos publicados"}
           </h1>
           <ol className="grid-cols-3 grid w-9/10 place-self-center">
-            {globalProjects.map((project) => {
+            {projects.map((project) => {
               return (
                 <li key={project.name}>
                   <Link
@@ -124,10 +126,10 @@ export default function HomePage() {
                     <ProjectCard
                       language={globalLanguage}
                       name={project.name}
-                      image={project.image}
+                      image={project.imageURL}
                       textEn={project.descriptionEn}
                       textPt={project.descriptionPt}
-                      programming={project.programming}
+                      programming={project.programmingLanguages}
                     />
                   </Link>
                 </li>

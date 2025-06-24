@@ -1,5 +1,5 @@
-import imagemTPT from "/src/assets/TPT.png";
-import imagemFokus from "/src/assets/Fokus.png";
+import imagemTPT from "/TPT.png";
+import imagemFokus from "/Fokus.png";
 
 export const projects = [
   {
