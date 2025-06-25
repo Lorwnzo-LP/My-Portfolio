@@ -1,6 +1,6 @@
 import HeaderComponent from "../../components/HeaderComponent";
 import myPhoto from "/src/assets/minha_foto_square.png";
-import { useGlobal } from "../../GlobalContext";
+import { useGlobal } from "../GlobalVariables/GlobalLanguage";
 
 export default function AboutMePage() {
   const { globalLanguage, setGlobalLanguage } = useGlobal();

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import LinkComponent from "../LinkComponent";
-import { useGlobal } from "../../GlobalContext";
+import { useGlobal } from "../../pages/GlobalVariables/GlobalLanguage";
 
 export default function HeaderComponent() {
   const location = useLocation();

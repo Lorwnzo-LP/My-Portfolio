@@ -12,7 +12,7 @@ class ProjectApi {
     }
   }
 
-  static async fetchByIdAndUpdate(id) {
+  static async fetchById(id) {
     try {
       const data = await fetch(`${API}/${id}`);
       const dataResponse = await data.json();

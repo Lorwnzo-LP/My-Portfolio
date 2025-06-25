@@ -5,28 +5,22 @@ import { FaStar } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
 import { TfiClose } from "react-icons/tfi";
 import ProjectCard from "../../components/ProjectCard";
-import { projects } from "../../projects";
+
 import { Link, useParams } from "react-router-dom";
-import { useGlobal } from "../../GlobalContext";
+import { useGlobal } from "../GlobalVariables/GlobalLanguage";
+import ProjectApi from "../../API";
+
+const projects = await ProjectApi.fetchFullData();
 
 export default function ProjectPage() {
   const params = useParams();
   const projectId = params.id;
+
   const { globalLanguage, setGlobalLanguage } = useGlobal();
 
   const [project, setProject] = useState();
 
-  const [projectsState, setProjectsState] = useState(
-    projects.map((chosen) => ({
-      id: chosen.id,
-      name: chosen.name,
-      image: chosen.image,
-      descriptionText: chosen.descriptionEn,
-      link: chosen.link,
-      programming: chosen.programming,
-      finished: chosen.finished,
-    }))
-  );
+  const [projectsState, setProjectsState] = useState(projects);
 
   useEffect(() => {
     console.log("objeto atualizado: ", project);
@@ -104,7 +98,7 @@ export default function ProjectPage() {
                 <div
                   style={{ cursor: "pointer" }}
                   className="pointer-events-auto"
-                   onClick={() => {
+                  onClick={() => {
                     handleUpdate();
                   }}
                 >
@@ -143,14 +137,14 @@ export default function ProjectPage() {
               : "Projetos finalizados"}
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-3 ">
-            {projectsState.map((project) => {
+            {projects.map((project) => {
               return (
-                <div key={project.id}>
-                  <Link to={`/projects/${project.id}`}>
+                <div key={project._id}>
+                  <Link to={`/projects/${project._id}`}>
                     <ProjectCard
                       language={globalLanguage}
                       name={project.name}
-                      image={project.image}
+                      image={project.imageURL}
                       textEn={project.descriptionEn}
                       textPt={project.descriptionPt}
                       programming={project.programmingLanguages}
@@ -162,7 +156,11 @@ export default function ProjectPage() {
           </div>
         </div>
         <div>
-          <h1 className="text-2xl">{globalLanguage=='English'? 'Projects in progress' : 'Projetos em progresso'}</h1>
+          <h1 className="text-2xl">
+            {globalLanguage == "English"
+              ? "Projects in progress"
+              : "Projetos em progresso"}
+          </h1>
         </div>
       </section>
     </div>

@@ -2,8 +2,8 @@ import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 import myPhoto from "/src/assets/minha_foto_square.png";
 import ProjectCard from "../../components/ProjectCard";
 import { Link } from "react-router-dom";
-import { useGlobal } from "../../GlobalContext";
-import ProjectApi from "../../backend/API";
+import { useGlobal } from "../GlobalVariables/GlobalLanguage";
+import ProjectApi from "../../API";
 
 const projects = await ProjectApi.fetchFullData();
 
@@ -118,7 +118,7 @@ export default function HomePage() {
               return (
                 <li key={project.name}>
                   <Link
-                    to={`/projects/${project.id}`}
+                    to={`/projects/${project._id}`}
                     onClick={() => {
                       console.log(project.id);
                     }}
