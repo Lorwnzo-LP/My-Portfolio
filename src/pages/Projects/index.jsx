@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import HeaderComponent from "../../components/HeaderComponent";
-
 import { FaStar } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
 import { TfiClose } from "react-icons/tfi";
@@ -9,6 +7,7 @@ import ProjectCard from "../../components/ProjectCard";
 import { Link, useParams } from "react-router-dom";
 import { useGlobal } from "../GlobalVariables/GlobalLanguage";
 import ProjectApi from "../../API";
+import imagem from "/SecurityChannel.png";
 
 const projects = await ProjectApi.fetchFullData();
 
@@ -18,31 +17,27 @@ export default function ProjectPage() {
 
   const { globalLanguage, setGlobalLanguage } = useGlobal();
 
-  const [project, setProject] = useState();
+  const [project, setProject] = useState(() => {
+    const projectIndex = projects.findIndex(
+      (project) => project._id == projectId
+    );
+    console.log(projectIndex);
+    return projects[projectIndex];
+  });
 
   const [projectsState, setProjectsState] = useState(projects);
-
   useEffect(() => {
     console.log("objeto atualizado: ", project);
   }, [project]);
 
-  const updateProject = (newProject) => {
-    setProject((prevProject) => ({
-      ...prevProject,
-      ...newProject, // Atualiza todas as propriedades de uma vez
-    }));
-  };
-
   useEffect(() => {
     if (projectId) {
-      const newProject = projectsState.find(
-        (element) => element.id === Number(projectId)
-      );
+      const newProject = projects.find((element) => element._id == projectId);
       if (newProject) {
         setProject(newProject);
       }
     }
-  }, [projectId, projectsState]);
+  }, [projectId, projects]);
 
   const handleUpdate = () => {
     setProject((prevState) => ({
@@ -65,13 +60,26 @@ export default function ProjectPage() {
                 handleClose();
               }}
             >
-              <TfiClose size={40} />
+              <Link to={`/projects`}>
+                <TfiClose size={40} />
+              </Link>
             </button>
           </div>
           <div className="flex flex-col lg:flex-row gap-5">
             <div className="w-full border-2">
-              <iframe className="w-full h-full" src={project.link}></iframe>
+              {project.link == "" ? (
+                <img
+                  className="w-full h-full bg-blue-500"
+                  src={imagem}
+                  alt="Image from project."
+                />
+            ) : (
+                <iframe className="w-full h-full" src={project.link}></iframe>
+                
+              )}
+              
             </div>
+            
             <div className="min-w-100 flex flex-col gap-5 justify-between bg-gray-600 w-1/2 p-10 rounded-lg text-white border-2 border-purple-500">
               <div className="flex flex-col gap-5">
                 <h2 className="text-3xl border-b-2 border-purple-400">
@@ -84,7 +92,7 @@ export default function ProjectPage() {
                 </h3>
                 <ol className="list-disc grid grid-flow-col grid-cols-3 grid-rows-3 text-md xl:text-lg">
                   {project
-                    ? project.programming.map((programming) => {
+                    ? project.programmingLanguages.map((programming) => {
                         return <li key={programming}>{programming}</li>;
                       })
                     : ""}
@@ -92,7 +100,11 @@ export default function ProjectPage() {
                 <h3 className="text-md xl:text-xl">
                   {globalLanguage == "English" ? "Description:" : "Descrição:"}
                 </h3>
-                <p className="text-ellipsis ">{project.descriptionText}</p>
+                <p className="text-ellipsis ">
+                  {globalLanguage == "English"
+                    ? project.descriptionEn
+                    : project.descriptionPt}
+                </p>
               </div>
               <div className="flex justify-between">
                 <div
@@ -129,38 +141,64 @@ export default function ProjectPage() {
           </h1>
         </div>
       )}
-      <section className="h-full w-8/10 place-self-center mt-15 flex">
-        <div className="w-3/4">
+      <section className="h-full w-8/10 place-self-center mt-15 pb-20 flex">
+        <div className="">
           <h1 className="text-2xl text-center">
             {globalLanguage == "English"
               ? "Finished projects"
               : "Projetos finalizados"}
           </h1>
-          <div className="grid grid-cols-1 lg:grid-cols-3 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
             {projects.map((project) => {
-              return (
-                <div key={project._id}>
-                  <Link to={`/projects/${project._id}`}>
-                    <ProjectCard
-                      language={globalLanguage}
-                      name={project.name}
-                      image={project.imageURL}
-                      textEn={project.descriptionEn}
-                      textPt={project.descriptionPt}
-                      programming={project.programmingLanguages}
-                    />
-                  </Link>
-                </div>
-              );
+              if (project.finished == true) {
+                return (
+                  <div key={project._id}>
+                    <Link to={`/projects/${project._id}`}>
+                      <ProjectCard
+                        language={globalLanguage}
+                        name={project.name}
+                        image={project.imageURL}
+                        textEn={project.descriptionEn}
+                        textPt={project.descriptionPt}
+                        programming={project.programmingLanguages}
+                      />
+                    </Link>
+                  </div>
+                );
+              } else {
+                return;
+              }
             })}
           </div>
         </div>
-        <div>
+        <div className="w-1/2">
           <h1 className="text-2xl">
             {globalLanguage == "English"
               ? "Projects in progress"
               : "Projetos em progresso"}
           </h1>
+          <div className="flex flex-col">
+            {projects.map((project) => {
+              if (project.finished == false) {
+                return (
+                  <div key={project._id}>
+                    <Link to={`/projects/${project._id}`}>
+                      <ProjectCard
+                        language={globalLanguage}
+                        name={project.name}
+                        image={project.imageURL}
+                        textEn={project.descriptionEn}
+                        textPt={project.descriptionPt}
+                        programming={project.programmingLanguages}
+                      />
+                    </Link>
+                  </div>
+                );
+              } else {
+                return;
+              }
+            })}
+          </div>
         </div>
       </section>
     </div>

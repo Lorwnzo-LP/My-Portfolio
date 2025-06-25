@@ -69,14 +69,38 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <div className="flex gap-5">
-                <button className="px-5 h-15 bg-white text-gray-800 border-2 border-gray-800 rounded-lg text-2xl flex place-content-center gap-5 items-center">
-                  Get in touch
-                </button>
-              </div>
             </div>
           </div>
-          <div className="bg-gray-700 p-5 flex flex-col gap-5 rounded-lg min-w-1/10 text-white">
+          <div className="bg-gray-600 p-5 flex flex-col gap-5 rounded-lg min-w-1/10 text-white">
+                  <h1 className="text-xl font-bold">My Professional Experiênce</h1>
+                  <ol className="flex flex-col gap-5">
+                    <li className="bg-gray-700 px-2 rounded-lg">
+                      <div className="flex flex-col">
+                        <h1 className="text-xl">Development intern</h1>
+                        <h2 className="text-sm">Nabeca - internship</h2>
+                        <p className="text-sm">03/2025 - actual</p>
+                        <p>Focus: Front-end</p>
+                      </div>
+                    </li>
+                    <li className="bg-gray-700 px-2 rounded-lg">
+                      <div className="flex flex-col">
+                        <h1 className="text-xl">App developer</h1>
+                        <h2 className="text-sm">The Personal Trainer - internship</h2>
+                        <p className="text-sm">03/2025 - actual</p>
+                        <p>Focus: API/Front-end</p>
+                      </div>
+                    </li>
+                    <li className="bg-gray-700 px-2 rounded-lg">
+                      <div className="flex flex-col">
+                        <h1 className="text-xl">Programming intern</h1>
+                        <h2 className="text-sm">StepByStep - internship</h2>
+                        <p className="text-sm">04/2025 - actual</p>
+                        <p>Focus: Full-stack</p>
+                      </div>
+                    </li>
+                  </ol>
+          </div>
+          <div className="bg-gray-600 p-5 flex flex-col gap-5 rounded-lg min-w-1/10 text-white">
             <h1 className="text-2xl font-bold">
               {globalLanguage == "English"
                 ? "My programming knowledge:"
@@ -95,6 +119,7 @@ export default function HomePage() {
                 <h2 className="text-xl font-bold">Back-end:</h2>
                 <ol className="flex flex-col list-disc">
                   <li>Node.js</li>
+                  <li>PostMan</li>
                 </ol>
               </div>
             </div>
@@ -102,6 +127,8 @@ export default function HomePage() {
               <h2 className="text-xl font-bold">Data-base</h2>
               <ol className="flex flex-col list-disc">
                 <li>SQLlite</li>
+                <li>Mongo.db</li>
+                <li>Firebase</li>
               </ol>
             </div>
           </div>

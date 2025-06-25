@@ -1,10 +1,18 @@
 import { Link, useLocation } from "react-router-dom";
 import LinkComponent from "../LinkComponent";
 import { useGlobal } from "../../pages/GlobalVariables/GlobalLanguage";
+//import pdfURL from "/src/assets/PDF.pdf"
 
 export default function HeaderComponent() {
   const location = useLocation();
   const { globalLanguage, setGlobalLanguage } = useGlobal();
+
+  /*const downloadPDF = function() {
+    const link = document.createElement('a');
+    link.href = pdfURL;
+    link.download = 'PDF.pdf';
+    link.click();
+  };*/
 
   return (
     <section className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-red-400">
@@ -30,13 +38,13 @@ export default function HeaderComponent() {
         </ul>
         <button
           onClick={() => {
-            console.log(location);
+            //downloadPDF();
           }}
           className="px-5 h-15 bg-gradient-to-r from-purple-500 to-red-400 border-3 border-white rounded-lg font-semibold text-white hover:from-purple-400 hover:to-red-300"
         >
           {globalLanguage == "English"
-            ? "Import informations"
-            : "Importar informações"}
+            ? "Download informations"
+            : "Baixar informações"}
         </button>
       </div>
     </section>
