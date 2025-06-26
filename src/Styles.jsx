@@ -1,16 +1,8 @@
-
-import HeaderComponent from './components/HeaderComponent'
-import './Styles.css'
-
-
+import HeaderComponent from "./components/HeaderComponent";
+import "./Styles.css";
 
 function App() {
-
-  return (
-    <>
-
-    </>
-  )
+  return <></>;
 }
 
-export default App
+export default App;

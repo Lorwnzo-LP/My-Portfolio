@@ -7,7 +7,6 @@ import ProjectApi from "../../API";
 
 const projects = await ProjectApi.fetchFullData();
 
-
 export default function HomePage() {
   const { globalLanguage, setGlobalLanguage } = useGlobal();
 
@@ -33,8 +32,8 @@ export default function HomePage() {
               </h3>
               <h3 className="text-xl">LorenzoContato1@outlook.com</h3>
               <div className=" z-10 mt-2 w-60 origin-top-right rounded-md ">
-                <h3 className="text-xl inline-flex h-15 w-60 justify-center items-center gap-x-1.5 rounded-md bg-gray-900 font-sans text-white shadow-xs ring-1 ring-gray-300">
-                  {globalLanguage == "English" ? "Follow me!" : "Me siga"}
+                <h3 className="text-2xl inline-flex h-15 w-60 justify-center items-center gap-x-1.5 rounded-md bg-gradient-to-r from-blue-500 via-purple-500 to-red-400 font-sans text-white shadow-xs ring-1 ring-gray-300">
+                  {globalLanguage == "English" ? "Follow me!" : "Me siga!"}
                 </h3>
                 <div className="z-10 mt-2 w-60 origin-top-right rounded-md bg-gray-800 shadow-lg ring-1 ring-black/5 ">
                   <div className="py-1">
@@ -71,40 +70,40 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="bg-gray-600 p-5 flex flex-col gap-5 rounded-lg min-w-1/10 text-white">
-                  <h1 className="text-xl font-bold">My Professional Experiênce</h1>
-                  <ol className="flex flex-col gap-5">
-                    <li className="bg-gray-700 px-2 rounded-lg">
-                      <div className="flex flex-col">
-                        <h1 className="text-xl">Development intern</h1>
-                        <h2 className="text-sm">Nabeca - internship</h2>
-                        <p className="text-sm">03/2025 - actual</p>
-                        <p>Focus: Front-end</p>
-                      </div>
-                    </li>
-                    <li className="bg-gray-700 px-2 rounded-lg">
-                      <div className="flex flex-col">
-                        <h1 className="text-xl">App developer</h1>
-                        <h2 className="text-sm">The Personal Trainer - internship</h2>
-                        <p className="text-sm">03/2025 - actual</p>
-                        <p>Focus: API/Front-end</p>
-                      </div>
-                    </li>
-                    <li className="bg-gray-700 px-2 rounded-lg">
-                      <div className="flex flex-col">
-                        <h1 className="text-xl">Programming intern</h1>
-                        <h2 className="text-sm">StepByStep - internship</h2>
-                        <p className="text-sm">04/2025 - actual</p>
-                        <p>Focus: Full-stack</p>
-                      </div>
-                    </li>
-                  </ol>
+          <div className="bg-gray-700 p-5 flex flex-col gap-5 rounded-lg min-w-1/10 text-white">
+            <h1 className="text-xl font-bold">My Professional Experiênce</h1>
+            <ol className="flex flex-col gap-5">
+              <li className="bg-gray-800 px-2 rounded-lg">
+                <div className="flex flex-col">
+                  <h1 className="text-xl">Development intern</h1>
+                  <h2 className="text-sm">Nabeca - internship</h2>
+                  <p className="text-sm">03/2025 - actual</p>
+                  <p>Focus: Front-end</p>
+                </div>
+              </li>
+              <li className="bg-gray-800 px-2 rounded-lg">
+                <div className="flex flex-col">
+                  <h1 className="text-xl">App developer</h1>
+                  <h2 className="text-sm">The Personal Trainer - internship</h2>
+                  <p className="text-sm">03/2025 - actual</p>
+                  <p>Focus: API/Front-end</p>
+                </div>
+              </li>
+              <li className="bg-gray-800 px-2 rounded-lg">
+                <div className="flex flex-col">
+                  <h1 className="text-xl">Programming intern</h1>
+                  <h2 className="text-sm">StepByStep - internship</h2>
+                  <p className="text-sm">04/2025 - actual</p>
+                  <p>Focus: Full-stack</p>
+                </div>
+              </li>
+            </ol>
           </div>
-          <div className="bg-gray-600 p-5 flex flex-col gap-5 rounded-lg min-w-1/10 text-white">
+          <div className="bg-gray-600 p-5 flex flex-col gap-5 rounded-lg min-w-3/11 text-white">
             <h1 className="text-2xl font-bold">
               {globalLanguage == "English"
-                ? "My programming knowledge:"
-                : "Meu conhecimento em programação:"}
+                ? "My knowledge:"
+                : "Meus conhecimentos:"}
             </h1>
             <div className="flex justify-around">
               <div>
@@ -142,25 +141,29 @@ export default function HomePage() {
           </h1>
           <ol className="grid-cols-3 grid w-9/10 place-self-center">
             {projects.map((project) => {
-              return (
-                <li key={project.name}>
-                  <Link
-                    to={`/projects/${project._id}`}
-                    onClick={() => {
-                      console.log(project.id);
-                    }}
-                  >
-                    <ProjectCard
-                      language={globalLanguage}
-                      name={project.name}
-                      image={project.imageURL}
-                      textEn={project.descriptionEn}
-                      textPt={project.descriptionPt}
-                      programming={project.programmingLanguages}
-                    />
-                  </Link>
-                </li>
-              );
+              if (project.finished == true) {
+                return (
+                  <li key={project.name}>
+                    <Link
+                      to={`/projects/${project._id}`}
+                      onClick={() => {
+                        console.log(project.id);
+                      }}
+                    >
+                      <ProjectCard
+                        language={globalLanguage}
+                        name={project.name}
+                        image={project.imageURL}
+                        textEn={project.descriptionEn}
+                        textPt={project.descriptionPt}
+                        programming={project.programmingLanguages}
+                      />
+                    </Link>
+                  </li>
+                );
+              } else {
+                return;
+              }
             })}
           </ol>
         </div>

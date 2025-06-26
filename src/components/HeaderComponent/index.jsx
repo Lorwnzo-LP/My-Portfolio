@@ -1,4 +1,3 @@
-import { Link, useLocation } from "react-router-dom";
 import LinkComponent from "../LinkComponent";
 import { useGlobal } from "../../pages/GlobalVariables/GlobalLanguage";
 import pdfUrlPt from "/src/assets/Perfil.pdf";
@@ -8,7 +7,6 @@ import EuaFlag from "/src/assets/EUA_Flag.png";
 import { useEffect, useState } from "react";
 
 export default function HeaderComponent() {
-  const location = useLocation();
 
   const {globalLanguage, setGlobalLanguage} = useGlobal();
 
@@ -57,7 +55,7 @@ export default function HeaderComponent() {
           <button
             onClick={downloadPDF}
             className="px-5 h-15 place-self-center bg-gradient-to-r from-purple-500 to-red-400 border-3 border-white rounded-lg font-semibold text-white hover:from-purple-400 hover:to-red-300"
-            disabled={languageNotSet}
+            
           >
             {globalLanguage === "English"
               ? "Download informations"
@@ -69,7 +67,7 @@ export default function HeaderComponent() {
             <button
             className=""
               onClick={() => handleChangeLanguage("Portuguese")}
-              disabled={languageNotSet}
+              disabled={globalLanguage == 'Portuguese'? true : false}
             >
               <img
                 src={BrazilFlag}
@@ -84,7 +82,7 @@ export default function HeaderComponent() {
 
             <button
               onClick={() => handleChangeLanguage("English")}
-              disabled={languageNotSet}
+              disabled={globalLanguage == 'English'? true : false}
             >
               <img
                 src={EuaFlag}

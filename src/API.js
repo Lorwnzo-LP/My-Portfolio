@@ -1,4 +1,4 @@
-const API = "http://localhost:3000/projects";
+const API = "http://localhost:5000/projects";
 
 class ProjectApi {
   static async fetchFullData() {

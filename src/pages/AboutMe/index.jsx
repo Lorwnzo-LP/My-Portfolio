@@ -4,13 +4,7 @@ import { useGlobal } from "../GlobalVariables/GlobalLanguage";
 import { useEffect, useState } from "react";
 
 export default function AboutMePage() {
-  const [globalLanguage, setGlobalLanguage] = useGlobal();
-
-  useEffect(() => {
-    setGlobalLanguage(() => {
-      return localStorage.getItem("language")
-    });
-  }, [globalLanguage]);
+  const {globalLanguage, setGlobalLanguage} = useGlobal();
   return (
     <>
       <section className="w-8/10 place-self-center">

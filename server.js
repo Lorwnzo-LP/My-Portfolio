@@ -1,8 +1,8 @@
 import "dotenv/config";
 
 import app from "./src/backend/app.js";
-const PORT = 3000;
+const PORT = 5000;
 
 app.listen(PORT, (req, res) => {
-  console.log("Escutando port 3000");
+  console.log("Escutando port 5000");
 });

@@ -9,9 +9,6 @@ import AboutMePage from "./pages/AboutMe/index.jsx";
 import HeaderComponent from "./components/HeaderComponent/index.jsx";
 import { GlobalProvider } from "./pages/GlobalVariables/GlobalLanguage.jsx";
 
-//Mongo api:
-//const uri = "mongodb+srv://Lorenzo:Piquinin.1@cluster0.aic8y5q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <GlobalProvider>
