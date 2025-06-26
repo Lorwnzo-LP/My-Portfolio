@@ -1,10 +1,16 @@
 import HeaderComponent from "../../components/HeaderComponent";
 import myPhoto from "/src/assets/minha_foto_square.png";
 import { useGlobal } from "../GlobalVariables/GlobalLanguage";
+import { useEffect, useState } from "react";
 
 export default function AboutMePage() {
-  const { globalLanguage, setGlobalLanguage } = useGlobal();
+  const [globalLanguage, setGlobalLanguage] = useGlobal();
 
+  useEffect(() => {
+    setGlobalLanguage(() => {
+      return localStorage.getItem("language")
+    });
+  }, [globalLanguage]);
   return (
     <>
       <section className="w-8/10 place-self-center">
