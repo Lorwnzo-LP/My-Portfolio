@@ -16,7 +16,7 @@ export default function HomePage() {
         <div className="flex lg:flex-row flex-col gap-10 w-8/10 place-self-center justify-between">
           <div className=" place-self-center gap-10 flex">
             <img
-              className="rounded-4xl w-80 h-90 top-1 border-4 border-purple-900"
+              className="rounded-4xl w-90 h-90 top-1 border-4 border-purple-900"
               src={myPhoto}
               alt="Minha foto"
             />
@@ -32,7 +32,7 @@ export default function HomePage() {
               </h3>
               <h3 className="text-xl">LorenzoContato1@outlook.com</h3>
               <div className=" z-10 mt-2 w-60 origin-top-right rounded-md ">
-                <h3 className="text-2xl inline-flex h-15 w-60 justify-center items-center gap-x-1.5 rounded-md bg-gradient-to-r from-blue-500 via-purple-500 to-red-400 font-sans text-white shadow-xs ring-1 ring-gray-300">
+                <h3 className="text-2xl font-bold inline-flex h-15 w-60 justify-center items-center gap-x-1.5 rounded-md bg-gradient-to-r from-blue-500 via-purple-500 to-red-400 font-sans text-white shadow-xs ring-1 ring-gray-300">
                   {globalLanguage == "English" ? "Follow me!" : "Me siga!"}
                 </h3>
                 <div className="z-10 mt-2 w-60 origin-top-right rounded-md bg-gray-800 shadow-lg ring-1 ring-black/5 ">
@@ -70,10 +70,10 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="bg-gray-700 p-5 flex flex-col gap-5 rounded-lg min-w-1/10 text-white">
-            <h1 className="text-xl font-bold">My Professional Experiênce</h1>
+          <div className="bg-gradient-to-t from-[#BB56E6] to-[#816BFF] p-5 flex flex-col gap-5 rounded-lg min-w-1/10 text-white">
+            <h1 className="text-xl font-bold">My Professional Experience:</h1>
             <ol className="flex flex-col gap-5">
-              <li className="bg-gray-800 px-2 rounded-lg">
+              <li className="bg-white text-black font-semibold px-2 rounded-lg">
                 <div className="flex flex-col">
                   <h1 className="text-xl">Development intern</h1>
                   <h2 className="text-sm">Nabeca - internship</h2>
@@ -81,7 +81,7 @@ export default function HomePage() {
                   <p>Focus: Front-end</p>
                 </div>
               </li>
-              <li className="bg-gray-800 px-2 rounded-lg">
+              <li className="bg-white text-black font-semibold px-2 rounded-lg">
                 <div className="flex flex-col">
                   <h1 className="text-xl">App developer</h1>
                   <h2 className="text-sm">The Personal Trainer - internship</h2>
@@ -89,7 +89,7 @@ export default function HomePage() {
                   <p>Focus: API/Front-end</p>
                 </div>
               </li>
-              <li className="bg-gray-800 px-2 rounded-lg">
+              <li className="bg-white text-black font-semibold px-2 rounded-lg">
                 <div className="flex flex-col">
                   <h1 className="text-xl">Programming intern</h1>
                   <h2 className="text-sm">StepByStep - internship</h2>
@@ -99,36 +99,38 @@ export default function HomePage() {
               </li>
             </ol>
           </div>
-          <div className="bg-gray-600 p-5 flex flex-col gap-5 rounded-lg min-w-3/11 text-white">
+          <div className="bg-gradient-to-b from-[#9C56FF] to-[#DB79AA] p-5 flex flex-col gap-5 rounded-lg min-w-3/11 text-white">
             <h1 className="text-2xl font-bold">
               {globalLanguage == "English"
                 ? "My knowledge:"
                 : "Meus conhecimentos:"}
             </h1>
             <div className="flex justify-around">
-              <div>
-                <h2 className="text-xl font-bold">Front-end:</h2>
+              <div className="flex flex-col gap-5">
+                <div>
+                  <h2 className="text-xl font-bold">Front-end:</h2>
+                  <ol className="flex flex-col list-disc">
+                    <li>JavaScript/CSS/HTML</li>
+                    <li>React.js</li>
+                    <li>TypeScript</li>
+                  </ol>
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold">Back-end:</h2>
+                  <ol className="flex flex-col list-disc">
+                    <li>Node.js</li>
+                    <li>PostMan</li>
+                  </ol>
+                </div>
+              </div>
+              <div className="place-self-start">
+                <h2 className="text-xl font-bold">Data-base</h2>
                 <ol className="flex flex-col list-disc">
-                  <li>JavaScript/CSS/HTML</li>
-                  <li>React.js</li>
-                  <li>TypeScript</li>
+                  <li>SQLlite</li>
+                  <li>Mongo.db</li>
+                  <li>Firebase</li>
                 </ol>
               </div>
-              <div>
-                <h2 className="text-xl font-bold">Back-end:</h2>
-                <ol className="flex flex-col list-disc">
-                  <li>Node.js</li>
-                  <li>PostMan</li>
-                </ol>
-              </div>
-            </div>
-            <div className="place-self-center">
-              <h2 className="text-xl font-bold">Data-base</h2>
-              <ol className="flex flex-col list-disc">
-                <li>SQLlite</li>
-                <li>Mongo.db</li>
-                <li>Firebase</li>
-              </ol>
             </div>
           </div>
         </div>
