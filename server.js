@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import app from "./src/backend/app.js";
+import app from "./backend/app.js";
 const PORT = 5000;
 
 app.listen(PORT, (req, res) => {
