@@ -5,7 +5,6 @@ class ProjectApi {
     try {
       const data = await fetch(API);
       const dataResponse = await data.json();
-      console.log(dataResponse);
       return dataResponse;
     } catch (error) {
       console.log(error);
@@ -16,7 +15,6 @@ class ProjectApi {
     try {
       const data = await fetch(`${API}/${id}`);
       const dataResponse = await data.json();
-      console.log(dataResponse);
       return dataResponse;
     } catch (error) {
       console.log(error);

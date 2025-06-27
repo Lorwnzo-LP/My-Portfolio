@@ -4,11 +4,23 @@ import ProjectCard from "../../components/ProjectCard";
 import { Link } from "react-router-dom";
 import { useGlobal } from "../GlobalVariables/GlobalLanguage";
 import ProjectApi from "../../API";
-
-const projects = await ProjectApi.fetchFullData();
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
   const { globalLanguage, setGlobalLanguage } = useGlobal();
+  const [projects, setProjects] = useState();
+
+  useEffect(() => {
+    const buscarDados = async () => {
+      try {
+        const dados = await ProjectApi.fetchFullData();
+        setProjects(dados);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    buscarDados();
+  }, []);
 
   return (
     <>
