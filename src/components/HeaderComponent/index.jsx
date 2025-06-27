@@ -7,13 +7,11 @@ import EuaFlag from "/src/assets/EUA_Flag.png";
 import { useEffect, useState } from "react";
 
 export default function HeaderComponent() {
-
-  const {globalLanguage, setGlobalLanguage} = useGlobal();
+  const { globalLanguage, setGlobalLanguage } = useGlobal();
 
   const handleChangeLanguage = (lang) => {
-      localStorage.setItem("language", lang)
-      setGlobalLanguage(lang);
-
+    localStorage.setItem("language", lang);
+    setGlobalLanguage(lang);
   };
 
   const downloadPDF = function () {
@@ -55,7 +53,6 @@ export default function HeaderComponent() {
           <button
             onClick={downloadPDF}
             className="px-5 h-15 place-self-center bg-gradient-to-r from-purple-500 to-red-400 border-3 border-white rounded-lg font-semibold text-white hover:from-purple-400 hover:to-red-300"
-            
           >
             {globalLanguage === "English"
               ? "Download informations"
@@ -65,9 +62,9 @@ export default function HeaderComponent() {
           {/* Language Toggle Buttons */}
           <div className="flex gap-5 content-center mt-4 ">
             <button
-            className=""
+              className=""
               onClick={() => handleChangeLanguage("Portuguese")}
-              disabled={globalLanguage == 'Portuguese'? true : false}
+              disabled={globalLanguage == "Portuguese" ? true : false}
             >
               <img
                 src={BrazilFlag}
@@ -82,7 +79,7 @@ export default function HeaderComponent() {
 
             <button
               onClick={() => handleChangeLanguage("English")}
-              disabled={globalLanguage == 'English'? true : false}
+              disabled={globalLanguage == "English" ? true : false}
             >
               <img
                 src={EuaFlag}

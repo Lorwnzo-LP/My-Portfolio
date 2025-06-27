@@ -7,10 +7,7 @@ import { useGlobal } from "../GlobalVariables/GlobalLanguage";
 import ProjectApi from "../../API";
 import imagem from "/SecurityChannel.png";
 
-async () => {
-  const projects = await ProjectApi.fetchFullData();
-  return projects
-}
+const projects = await ProjectApi.fetchFullData();
 
 export default function ProjectPage() {
   const params = useParams();
