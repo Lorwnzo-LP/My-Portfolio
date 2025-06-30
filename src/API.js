@@ -1,4 +1,4 @@
-const API = "my-portfolio-database.onrender.com";
+const API = "https://my-portfolio-database.onrender.com/projects";
 
 class ProjectApi {
   static async fetchFullData() {
