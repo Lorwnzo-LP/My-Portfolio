@@ -1,9 +1,9 @@
-const API = "http://localhost:5000/projects";
+const API = "my-portfolio-database.onrender.com";
 
 class ProjectApi {
   static async fetchFullData() {
     try {
-      const data = await fetch(API);
+      const data = await fetch(`${API}/projects`);
       const dataResponse = await data.json();
       return dataResponse;
     } catch (error) {
@@ -13,7 +13,7 @@ class ProjectApi {
 
   static async fetchById(id) {
     try {
-      const data = await fetch(`${API}/${id}`);
+      const data = await fetch(`${API}/projects/${id}`);
       const dataResponse = await data.json();
       return dataResponse;
     } catch (error) {
