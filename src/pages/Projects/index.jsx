@@ -134,7 +134,7 @@ export default function ProjectPage() {
               ? "Finished projects"
               : "Projetos finalizados"}
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+          <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 ">
             {projects.map((project) => {
               if (project.finished == true) {
                 return (
@@ -157,17 +157,17 @@ export default function ProjectPage() {
             })}
           </div>
         </div>
-        <div className="w-1/2">
-          <h1 className="text-2xl">
+        <div className="w-8/10 items-center 2xl:w-1/2">
+          <h1 className="text-2xl text-center">
             {globalLanguage == "English"
               ? "Projects in progress"
               : "Projetos em progresso"}
           </h1>
-          <div className="flex flex-col">
+          <div className="flex flex-col place-self-center">
             {projects.map((project) => {
               if (project.finished == false) {
                 return (
-                  <div key={project._id}>
+                  <div className="flex place-items-center" key={project._id}>
                     <Link to={`/projects/${project._id}`}>
                       <ProjectCard
                         language={globalLanguage}

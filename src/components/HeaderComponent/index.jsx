@@ -4,9 +4,11 @@ import pdfUrlPt from "/src/assets/Perfil.pdf";
 import pdfUrlEn from "/src/assets/Profile.pdf";
 import BrazilFlag from "/src/assets/Brazil_Flag.png";
 import EuaFlag from "/src/assets/EUA_Flag.png";
-import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function HeaderComponent() {
+  const location = useLocation();
+
   const { globalLanguage, setGlobalLanguage } = useGlobal();
 
   const handleChangeLanguage = (lang) => {
@@ -28,21 +30,39 @@ export default function HeaderComponent() {
 
   return (
     <section className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-red-400">
-      <div className="h-30 flex gap-10 place-self-center place-content-between items-center w-7/10 relative">
+      <div className="h-30 flex gap-10 place-self-center place-content-between items-center w-9/10 xl:w-7/10 relative">
         <h1 className="text-2xl font-bold text-white ">
           {globalLanguage == "English" ? "Welcome!" : "Bem vindo!"}
         </h1>
 
         <ul className="flex gap-10">
-          <li>
+          <li
+            className={`px-5 place-self-center${
+              location.pathname == "/" || location.pathname == "/home"
+                ? "underline underline-offset-1 bg-white/20 rounded-full"
+                : ""
+            }`}
+          >
             <LinkComponent to="/home">Home</LinkComponent>
           </li>
-          <li>
+          <li
+            className={`px-5 place-self-center ${
+              location.pathname == "/projects"
+                ? "underline underline-offset-1 bg-white/20 rounded-full"
+                : ""
+            }`}
+          >
             <LinkComponent to="/projects">
               {globalLanguage == "English" ? "Projects" : "Projetos"}
             </LinkComponent>
           </li>
-          <li>
+          <li
+            className={`px-5 place-self-center ${
+              location.pathname == "/about_me"
+                ? "underline underline-offset-1 bg-white/20 rounded-full"
+                : ""
+            }`}
+          >
             <LinkComponent to="/about_me">
               {globalLanguage == "English" ? "About me" : "Sobre mim"}
             </LinkComponent>
@@ -69,7 +89,7 @@ export default function HeaderComponent() {
               <img
                 src={BrazilFlag}
                 alt="Brazil flag"
-                className={`w-20 h-20 rounded-full border-2 ${
+                className={`w-20 rounded-full border-2 ${
                   globalLanguage === "Portuguese"
                     ? "border-green-500"
                     : "grayscale"
@@ -84,7 +104,7 @@ export default function HeaderComponent() {
               <img
                 src={EuaFlag}
                 alt="USA flag"
-                className={`w-20 h-20 rounded-full border-2 ${
+                className={`w-20  rounded-full border-2 ${
                   globalLanguage === "English" ? "border-blue-500" : "grayscale"
                 }`}
               />

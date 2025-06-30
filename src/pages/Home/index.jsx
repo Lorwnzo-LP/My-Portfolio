@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <>
       <section className="flex flex-col gap-10 mt-10">
-        <div className="flex lg:flex-row flex-col gap-10 w-8/10 place-self-center justify-between">
+        <div className="flex 2xl:flex-row flex-col gap-10 w-8/10 place-self-center justify-between">
           <div className=" place-self-center gap-10 flex">
             <img
               className="rounded-4xl w-90 h-90 top-1 border-4 border-purple-900"
@@ -72,7 +72,7 @@ export default function HomePage() {
           </div>
           <div className="bg-gradient-to-t from-[#BB56E6] to-[#816BFF] p-5 flex flex-col gap-5 rounded-lg min-w-1/10 text-white">
             <h1 className="text-xl font-bold">My Professional Experience:</h1>
-            <ol className="flex flex-col gap-5">
+            <ol className="flex flex-wrap 2xl:flex-col gap-5">
               <li className="bg-white text-black font-semibold px-2 rounded-lg">
                 <div className="flex flex-col">
                   <h1 className="text-xl">Development intern</h1>
@@ -105,27 +105,25 @@ export default function HomePage() {
                 ? "My knowledge:"
                 : "Meus conhecimentos:"}
             </h1>
-            <div className="flex justify-around">
-              <div className="flex flex-col gap-5">
-                <div>
-                  <h2 className="text-xl font-bold">Front-end:</h2>
-                  <ol className="flex flex-col list-disc">
-                    <li>JavaScript/CSS/HTML</li>
-                    <li>React.js</li>
-                    <li>TypeScript</li>
-                  </ol>
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold">Back-end:</h2>
-                  <ol className="flex flex-col list-disc">
-                    <li>Node.js</li>
-                    <li>PostMan</li>
-                  </ol>
-                </div>
+            <div className="flex gap-10 justify-around">
+              <div>
+                <h2 className="text-xl font-bold">Front-end:</h2>
+                <ol className="flex flex-col ">
+                  <li>JavaScript/CSS/HTML</li>
+                  <li>React.js</li>
+                  <li>TypeScript</li>
+                </ol>
+              </div>
+              <div>
+                <h2 className="text-xl font-bold">Back-end:</h2>
+                <ol className="flex flex-col ">
+                  <li>Node.js</li>
+                  <li>PostMan</li>
+                </ol>
               </div>
               <div className="place-self-start">
                 <h2 className="text-xl font-bold">Data-base</h2>
-                <ol className="flex flex-col list-disc">
+                <ol className="flex flex-col ">
                   <li>SQLlite</li>
                   <li>Mongo.db</li>
                   <li>Firebase</li>
@@ -141,7 +139,7 @@ export default function HomePage() {
               ? "Published projects"
               : "Projetos publicados"}
           </h1>
-          <ol className="grid-cols-3 grid w-9/10 place-self-center">
+          <ol className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 w-9/10 place-self-center">
             {projects.map((project) => {
               if (project.finished == true) {
                 return (
