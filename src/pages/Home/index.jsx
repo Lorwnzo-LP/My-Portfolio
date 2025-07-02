@@ -72,7 +72,7 @@ export default function HomePage() {
           </div>
           <div className="bg-gradient-to-t from-[#BB56E6] to-[#816BFF] p-5 flex flex-col gap-5 rounded-lg min-w-1/10 text-white">
             <h1 className="text-xl font-bold">My Professional Experience:</h1>
-            <ol className="flex flex-wrap 2xl:flex-col gap-5">
+            <ol className="flex flex-wrap justify-evenly 2xl:flex-col gap-5">
               <li className="bg-white text-black font-semibold px-2 rounded-lg">
                 <div className="flex flex-col">
                   <h1 className="text-xl">Development intern</h1>

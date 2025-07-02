@@ -19,7 +19,6 @@ export default function ProjectPage() {
     const projectIndex = projects.findIndex(
       (project) => project._id == projectId
     );
-    console.log(projectIndex);
     return projects[projectIndex];
   });
 
