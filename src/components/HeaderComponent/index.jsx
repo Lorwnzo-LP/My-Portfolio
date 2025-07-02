@@ -37,7 +37,7 @@ export default function HeaderComponent() {
 
         <ul className="flex gap-10">
           <li
-            className={`px-5 place-self-center${
+            className={`px-5 place-self-center ${
               location.pathname == "/" || location.pathname == "/home"
                 ? "underline underline-offset-1 bg-white/20 rounded-full"
                 : ""
@@ -75,8 +75,8 @@ export default function HeaderComponent() {
             className="px-5 h-15 place-self-center bg-gradient-to-r from-purple-500 to-red-400 border-3 border-white rounded-lg font-semibold text-white hover:from-purple-400 hover:to-red-300"
           >
             {globalLanguage === "English"
-              ? "Download informations"
-              : "Baixar informações"}
+              ? "Download Curriculim"
+              : "Baixar Currículo"}
           </button>
 
           {/* Language Toggle Buttons */}

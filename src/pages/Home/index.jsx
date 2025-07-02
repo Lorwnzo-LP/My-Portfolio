@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <>
       <section className="flex flex-col gap-10 mt-10">
-        <div className="flex 2xl:flex-row flex-col gap-10 w-8/10 place-self-center justify-between">
+        <div className="flex 2xl:flex-row flex-col gap-10 w-9/10 place-self-center justify-between">
           <div className=" place-self-center gap-10 flex">
             <img
               className="rounded-4xl w-90 h-90 top-1 border-4 border-purple-900"
