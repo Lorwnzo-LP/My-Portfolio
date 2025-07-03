@@ -32,7 +32,7 @@ export default function AboutMePage() {
             </p>
             <p>
               {globalLanguage == "English"
-                ? `One time, at work, I talked to a man, he was a software engineer, and he explained to me what his job was like. Every detail fascinated me so much that the next day I looked for a programming course. Over time, I began to feel that famous pleasure I had always heard about.
+                ? `One time, at work, I talked to a man, he was a software engineer and explained to me what his job was like. Every detail fascinated me so much that the next day I looked for a programming course. Over time, I began to feel that famous pleasure I had always heard about.
 `
                 : `Derrepente, no trabalho, enquanto usava o sistema da empresa, Eu conversei com um homem, ele era um engenheiro de software e explicou como seu trabalho funcionava, cada detalhe era tão facinante para mim que no próximo dia, eu pesquisei sobre um curso de programação. Com o tempo, Eu comecei a sentir aquele famoso prazer que sempre escutei sobre.`}
             </p>

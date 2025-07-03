@@ -41,6 +41,11 @@ export default function ProjectPage() {
   const handleClose = () => {
     setProject(null); // Use null para indicar que não há projeto selecionado
   };
+
+  const handleScroll = () => {
+    window.scroll({top: 0, behavior: "smooth"})
+  }
+
   return (
     <div className="pb-50">
       {project ? (
@@ -137,7 +142,7 @@ export default function ProjectPage() {
             {projects.map((project) => {
               if (project.finished == true) {
                 return (
-                  <div key={project._id}>
+                  <div onClick={() => {handleScroll()}} key={project._id}>
                     <Link to={`/projects/${project._id}`}>
                       <ProjectCard
                         language={globalLanguage}
@@ -166,7 +171,7 @@ export default function ProjectPage() {
             {projects.map((project) => {
               if (project.finished == false) {
                 return (
-                  <div key={project._id}>
+                  <div onClick={() => {handleScroll()}} key={project._id}>
                     <Link className="flex place-content-center" to={`/projects/${project._id}`}>
                       <ProjectCard
                         language={globalLanguage}
