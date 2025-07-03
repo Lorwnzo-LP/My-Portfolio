@@ -1,3 +1,5 @@
+import "./ProjectCard.css";
+
 export default function ProjectCard({
   language,
   name,
@@ -9,12 +11,12 @@ export default function ProjectCard({
   return (
     <div className="flex flex-col py-5 gap-5 w-9/10 rounded-lg px-5 h-100 transition delay-100 duration-200 easy-in-out hover:-translate-1  hover:scale-110 ">
       <img
-        className="bg-black border-1 border-purple-600 w-full min-h-50 max-h-50 object-fill place-self-center  rounded-xl"
+        className="bg-black border-1 border-purple-600 min-h-50 max-h-50 object-fill place-self-center  rounded-xl"
         src={image}
         alt="imagem base"
       />
       <h2 className="text-2xl font-bold italic">{name}</h2>
-      <p>{language == "English" ? textEn : textPt}</p>
+      <p className="CropText">{language == "English" ? textEn : textPt}</p>
       <ol>
         {programming ? (
           programming.map((program) => {

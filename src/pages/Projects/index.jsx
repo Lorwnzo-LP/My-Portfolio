@@ -42,7 +42,7 @@ export default function ProjectPage() {
     setProject(null); // Use null para indicar que não há projeto selecionado
   };
   return (
-    <div>
+    <div className="pb-50">
       {project ? (
         <section className="w-8/10 place-self-center mt-5">
           <div className="flex justify-between items-center">
@@ -126,7 +126,7 @@ export default function ProjectPage() {
           </h1>
         </div>
       )}
-      <section className="h-full w-8/10 place-self-center mt-15 pb-20 flex">
+      <section className="h-full w-8/10 place-self-center mt-15  flex">
         <div className="">
           <h1 className="text-2xl text-center">
             {globalLanguage == "English"
@@ -166,8 +166,8 @@ export default function ProjectPage() {
             {projects.map((project) => {
               if (project.finished == false) {
                 return (
-                  <div className="flex place-items-center" key={project._id}>
-                    <Link to={`/projects/${project._id}`}>
+                  <div key={project._id}>
+                    <Link className="flex place-content-center" to={`/projects/${project._id}`}>
                       <ProjectCard
                         language={globalLanguage}
                         name={project.name}
